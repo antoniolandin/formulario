@@ -1,0 +1,356 @@
+\documentclass[a4paper,8pt]{extarticle} % 10pt - 30% = 7pt
+
+% Packages
+\usepackage{inputenc} % Unicode support (Umlauts etc.)
+\usepackage{amsmath,mathtools} % Advanced math typesetting
+\usepackage{physics} % Physics notation
+\usepackage{hyperref} % Add a link to your document
+\usepackage{geometry} % Margins
+\usepackage{multicol} % for multicolumn layout
+\usepackage{xcolor} % For color
+\usepackage{tcolorbox} % For colored boxes
+\usepackage{fancyhdr} % Headers and footers
+
+\geometry{top=1in, headheight=0.5in, headsep=0.1in, margin=0.5in}
+
+% Compact itemize
+\usepackage{enumitem}
+\setlist{nosep}
+
+% Compact sections
+\usepackage[compact]{titlesec}
+\titlespacing{\section}{0pt}{*0}{*0}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+
+% Reduce line spacing
+\renewcommand{\baselinestretch}{0.8}
+
+% Color scheme
+\definecolor{lightblue}{rgb}{0.75,0.85,1}
+
+% Headers
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt} % no line in header area
+\fancyhead[C]{Formulario Inferencia Estadística} % Center
+
+% New command for creating boxes with black text
+\newcommand{\mybox}[2]{
+    \begin{tcolorbox}[colback=lightblue!5!white,colframe=lightblue!75!black,boxsep=1pt,arc=0pt,outer arc=0pt,title={\textcolor{black}{#1}}]
+        \textcolor{black}{#2}
+    \end{tcolorbox}
+}
+
+% Start the document
+\begin{document}
+
+\fontsize{7pt}{8pt}\selectfont
+
+\begin{multicols}{2}
+
+\mybox{Estadístico varianza muestral $s^2$}{
+    \begin{subequations}
+        \begin{equation}
+            \frac{(n-1)s^2}{\sigma_{0}^2} \sim \mathcal{X}_{n-1} 
+        \end{equation} 
+        \begin{equation}
+            \text{IC}: \left( \frac{(n-1)s^2}{\mathcal{X}_{n-1; 1-\frac{\alpha}{2}}}; \frac{(n-1)s^2}{\mathcal{X}_{n-1; \frac{\alpha}{2}}} \right) 
+        \end{equation}
+    \end{subequations}
+}
+
+\mybox{Estadístico difrenrecia de varianzas muestrales $\frac{s_{x}^2}{s_{y}^2}$}{
+    \begin{subequations}
+        \begin{equation}
+            \frac{s_{x}^2 / \sigma_{x}^2}{s_{y}^2 / \sigma_{y}^2} \sim F_{n-1;m-1}
+        \end{equation} 
+        \begin{equation}
+            \text{IC}: \left( \frac{s_{x}^2 / s_{y}^2}{F_{n-1;m-1;1-\frac{\alpha}{2}}}; \frac{s_{x}^2 / s_{y}^2}{F_{n-1;m-1;\frac{\alpha}{2}}} \right )  
+        \end{equation}
+    \end{subequations}
+}
+
+\mybox{Estadístico media muestral $\bar{x}$ con desviación típica poblacional $\sigma$ conocida}{
+    \begin{subequations}
+        \begin{equation}
+            \frac{\bar{x} - \mu_{0}}{\sigma/\sqrt{n}} \sim N(0,1) 
+        \end{equation}
+        \begin{equation}
+            \text{IC}: \left( \bar{x} \mp Z_{1 - \frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} \right)  
+        \end{equation}
+    \end{subequations}
+}
+
+\mybox{Estadístico media muestral $\bar{x}$ con desviación típica poblacional $\sigma$ desconocida y $n\ge 40$}{
+    \begin{subequations}
+        \begin{equation}
+            \frac{\bar{x} - \mu_{0}}{s/\sqrt{n}} \sim N(0,1) \quad \text{si } n\ge 40
+        \end{equation}
+        \begin{equation}
+            \text{IC}: \left( \bar{x} \mp Z_{1 - \frac{\alpha}{2}} \cdot \frac{s}{\sqrt{n}} \right)  
+        \end{equation}
+    \end{subequations}
+}
+
+\mybox{Estadístico media muestral $\bar{x}$ con desviación típica poblacional $\sigma$ desconocida y $n<40$}{
+    \begin{subequations}
+        \begin{equation}
+            \frac{\bar{x} - \mu_{0}}{s/\sqrt{n}} \sim t_{n-1} \quad \text{si } n<40
+        \end{equation}
+        \begin{equation}
+            \text{IC}: \left( \bar{x} \mp t_{n-1;1-\frac{\alpha}{2}} \cdot \frac{s}{\sqrt{n}} \right)  
+        \end{equation}
+    \end{subequations}
+}
+
+\mybox{Estadístico diferencia de medias muestral $\hat{x} - \hat{y}$ para muestras independientes y con $\sigma_{x}$ y $\sigma_{y}$ conocidas}{
+    \begin{subequations}
+        \begin{equation}
+            \frac{(\overline{X} - \overline{Y}) - (\mu_{x} - \mu_{y})}{\sqrt{ \frac{\sigma_{x}^2}{n_{1}} + \frac{\sigma_{y}^2}{n_{2}}}} \sim N(0,1)
+        \end{equation}
+        \begin{equation}
+            \text{IC}: \left( \bar{x} - \bar{y} \mp Z_{1 - \frac{\alpha}{2}} \cdot \sqrt{\frac{\sigma_x^2}{n_{1}} + \frac{\sigma_y^2}{n_{2}}} \right)  
+        \end{equation}
+    \end{subequations}
+}
+
+\mybox{Estadístico diferencia de medias muestral $\bar{x} - \bar{y}$ para muestras independientes con $\sigma_{x}$ o $\sigma_{y}$ desconocidas y $n_{1} > 40$ y $n_{2} > 40$}{
+    \begin{subequations}
+        \begin{equation}
+            \begin{split}
+            & \frac{(\overline{X} - \overline{Y}) - (\mu_{x} - \mu_{y})}{\sqrt{ \frac{s_{x}^2}{n_{1}} + \frac{s_{y}^2}{n_{2}}}} \sim N(0,1)\\
+            & \text{Si } n_{1}\ge 40 \text{ y } n_{2}\ge 40
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \text{IC}: \left( \bar{x} - \bar{y} \mp Z_{1 - \frac{\alpha}{2}} \cdot \sqrt{\frac{s_x^2}{n_{1}} + \frac{s_y^2}{n_{2}}} \right)  
+        \end{equation}
+    \end{subequations}
+}
+
+\mybox{Estadístico diferencia de medias muestral $\bar{x} - \bar{y}$ para muestras pequeñas ($n_{1} < 40$ o $n_{2} < 40$) independientes con $\sigma_{x}$ o $\sigma_{y}$ desconocidas y distintas ($\sigma_x \neq \sigma_y$)}{
+    \begin{subequations}
+        \begin{equation}
+            \begin{split}
+            & \frac{(\overline{X} - \overline{Y}) - (\mu_{x} - \mu_{y})}{\sqrt{ \frac{s_{x}^2}{n_{1}} + \frac{s_{y}^2}{n_{2}}}} \sim t_{\epsilon}\\
+            & \epsilon = \frac{ \left( \frac{s_{x}^2}{n_{1}} + \frac{s_{y}^2}{n_{2}} \right )^2 }{ \frac{\left( \frac{s_{x}^2}{n_{1}} \right)^2 }{n_{1}-1} + \frac{\left( \frac{s_{y}^2}{n_{2}} \right)^2 }{n_{2}-1}} \\
+            & \text{Si } n_{1} < 40 \text{ o } n_{2} < 40 \text{ y } \sigma_x \neq \sigma_y
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \text{IC}: \left( \bar{x}-\bar{y} \mp t_{\epsilon, 1-\frac{\alpha}{2}} \cdot \sqrt{\frac{s_{1}^2}{n_{1}} + \frac{s_{2}^2}{n_{2}}} \right) 
+        \end{equation}
+    \end{subequations}
+}
+
+\mybox{Estadístico diferencia de medias muestral $\bar{x} - \bar{y}$ para muestras pequeñas ($n_{1} < 40$ o $n_{2} < 40$) independientes con $\sigma_{x}$ o $\sigma_{y}$ desconocidas e iguales ($\sigma_x = \sigma_y$)}{
+    \begin{subequations}
+        \begin{equation}
+            \begin{split}
+                & \frac{(\overline{X} - \overline{Y}) - (\mu_{x} - \mu_{y})}{s_{p} \sqrt{\frac{1}{n_{1}}} + \frac{1}{n_{2}}} \sim t_{n_{1} + n_{2} - 2}\\
+                & \text{Si } n_{1} < 40 \text{ o } n_{2} < 40 \text{ y } \sigma_x = \sigma_y\\
+                & s_p = \sqrt{\frac{(n_{1}-1)s_{x}^2 + (n_{2}-1)s_{y}^2}{n_{1} + n_{2} - 2}}
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \text{IC}: \left( \bar{x}-\bar{y} \mp t_{n_{1}+n_{2}-2; 1-\frac{\alpha}{2}}\cdot s_p \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}  \right) 
+        \end{equation}
+    \end{subequations}
+}
+
+\mybox{Estadístico diferencia de medias muestral $\overline{D}$ para muestras pareadas}{
+    \begin{subequations}
+        \begin{equation}
+            \frac{\overline{D} - \delta_0}{S_D / \sqrt{n}} \sim t_{n-1} 
+        \end{equation}
+        \begin{equation}
+            \text{IC}: \left( \overline{D} \mp t_{n-1; 1-\frac{\alpha}{2}} \cdot \frac{S_D}{\sqrt{n}} \right)  
+        \end{equation}
+    \end{subequations}
+}
+
+\mybox{Estadístico proporción muestral $p$ para muestras grandes $n \ge 40$}{
+    \begin{subequations}
+        \begin{equation}
+            \frac{p - \pi_{0}}{\sqrt{\frac{\pi_{0} (1 - \pi_{0})}{n}}} \sim N(0,1) \quad \text{si } n\ge 40
+        \end{equation}
+        \begin{equation}
+            \text{IC}: \left( p \mp Z_{1-\frac{\alpha}{2}}\cdot \sqrt{\frac{p(1-p)}{n}} \right) 
+        \end{equation}
+    \end{subequations}
+}
+
+\mybox{Estadístico proporción muestral $p$ para muestras pequeñas $n < 40$}{
+    \begin{equation}
+        X \sim B(n, \pi_0) \quad \text{si } n < 40
+    \end{equation}
+}
+
+\mybox{Estadístico diferencia de proporciones muestrales $p_1 - p_2$ en muestras grandes $n_{1}\ge 40$ y $n_{2} \ge 40$}{
+    \begin{subequations}
+        \begin{equation}
+            \begin{split}
+                & \frac{p_{1}-p_{2}-(\pi_{1}-\pi_{2})}{\sqrt{pq \left( \frac{1}{n_{1}} + \frac{1}{n_{2}} \right)}} \sim N(0,1) \quad \text{si } n_{1}\ge 40 \text{ y } n_{2} \ge 40\\
+                & p = \frac{X_{1} + X_{2}}{n_{1} + n_{2}} \quad \text{(proporción global de individuos)}
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \text{IC}: \left( p_{1}-p_{2}\mp Z_{1-\frac{\alpha}{2}} \cdot \sqrt{pq \left( \frac{1}{n_{1}} + \frac{1}{n_{2}} \right)}\right)  
+        \end{equation}
+    \end{subequations}
+}
+
+\end{multicols}
+
+\pagebreak
+
+\begin{multicols}{2}
+    \mybox{Esperanza}{
+        \begin{subequations}
+            \begin{equation}
+               EX = \int_{-\infty}^{\infty} x f_x(x)dx \quad \text{si } X \text{ continua}\\
+            \end{equation}
+            \begin{equation}
+               EX = \sum_{i} x_i P(X=x_i) \quad \text{si } X \text{ discreta}
+            \end{equation}
+            \begin{equation}
+                E[XY] = EX \cdot EY \quad \text{si } X \text{ e } Y \text{ variables independientes}
+            \end{equation}
+        \end{subequations}
+    }
+
+    \mybox{Varianza}{
+        \begin{subequations}
+            \begin{equation}
+                \text{Var} X = E[X - EX]^2 = E[X^2] - (E[X])^2  
+            \end{equation}
+            \begin{equation}
+                \text{Var}(aX + bY) = a^2\text{Var}X + b^2\text{Var}Y \text{ si } X \text{ e } Y \text{ independientes}
+            \end{equation}
+        \end{subequations}
+    }
+
+    \mybox{Sesgo}{
+        \begin{equation}
+            b(\theta) = \text{Sesgo}(\hat{\theta}, \theta) = E[\hat{\theta}] - \theta
+        \end{equation}
+    }
+
+    \mybox{Error Cuadrático Medio (ECM)}{
+        \begin{equation}
+            ECM = E[\hat{\theta} - \theta]^2 = \text{Var} \hat{\theta} + \left[ \text{Sesgo}(\hat{\theta}, \theta) \right]^2 
+        \end{equation}
+    }
+
+    \mybox{Función score}{
+        \begin{equation}
+            sc(\theta) = \frac{\partial \ln L(X; \theta)}{\partial \theta} 
+        \end{equation}
+    }
+
+    \mybox{Función de verosimilitud}{
+        \begin{equation}
+            L(X, \theta) = P(x_{1}, \ldots, x_{n} | \theta)
+        \end{equation}
+    }
+
+    \mybox{Cantidad de información de Fisher}{
+        \begin{subequations}
+            \begin{equation}
+                I(\theta) = E \left[ \frac{\partial \ln L(X; \theta)}{\partial \theta} \right]^2  
+            \end{equation}
+            \begin{equation}
+                I_{X_1, X_2,\ldots X_n}(\theta) = n E \left[ \frac{\partial \ln f(X; \theta)}{\partial \theta} \right]^2  \text{ si M.A.S.}
+            \end{equation}
+        \end{subequations}
+    }
+
+    \mybox{Cota de Cramer-Rao}{
+        \begin{equation}
+                        \text{Var}(\hat{\theta}) \ge \frac{1}{I(\theta)} = \frac{[1 + b'(\theta)]^2}{E \left[ \frac{\partial \ln L(X; \theta)}{\partial \theta} \right]^2} = \frac{[1 + b'(\theta)]^2}{nE \left[ \frac{\partial \ln f(X; \theta)}{\partial \theta} \right]^2}
+        \end{equation}
+    }
+
+    \mybox{Desigualdad de Chevishev}{
+        \begin{equation}
+            P(|X-EX| > \epsilon) \le \frac{\text{Var}X}{\epsilon^2}
+        \end{equation}
+    }
+
+    \mybox{Estimador consistente}{
+        \begin{subequations}
+            \begin{equation}
+                P(|\hat{\theta} - \theta| > \epsilon) \to 0 \text{ si } n\to \infty
+            \end{equation}
+            \begin{equation}
+                \text{ECM} \to 0 \text{ si } n \to \infty
+            \end{equation}
+        \end{subequations}
+    }
+
+    \mybox{Estimador suficiente}{
+        \begin{equation}
+            L(X, \theta) = H(X) \cdot G[T(X), \theta] 
+        \end{equation}
+    }
+
+    \mybox{Momentos}{
+        \begin{subequations}
+            \begin{equation}
+                \alpha_r(\theta_1, \ldots \theta_k) = E[X^r]
+            \end{equation}
+            \begin{equation}
+                a_r = \sum_{i=1}^{\infty} \frac{x_i^r}{n}
+            \end{equation}
+        \end{subequations}
+    }
+
+    \mybox{Distribución exponencial}{
+        \begin{subequations}
+            \begin{equation}
+                f_{\lambda}(x) = \lambda e^{-\lambda x} \quad x\ge 0
+            \end{equation}
+            \begin{equation}
+                F_{\lambda}(x) = 1 - e^{-\lambda x} 
+            \end{equation}
+            \begin{equation}
+                EX = \frac{1}{\lambda}
+            \end{equation}
+            \begin{equation}
+                \text{Var}X = \frac{1}{\lambda^2}
+            \end{equation}
+        \end{subequations}
+    }
+
+    \mybox{Distribución de Poisson}{
+        \begin{subequations}
+            \begin{equation}
+                P(X=k) = \frac{\lambda^k e^{-\lambda}}{k!}
+            \end{equation}
+            \begin{equation}
+                EX = \lambda 
+            \end{equation}
+            \begin{equation}
+                \text{Var}X = \lambda
+            \end{equation}
+        \end{subequations}
+    }
+
+    \mybox{Distribución binomial (Bernoulli)}{
+        \begin{subequations}
+            \begin{equation}
+                P(X=k) = \binom{n}{k}p^k (1-p)^{n-k} 
+            \end{equation}
+            \begin{equation}
+                EX = np
+            \end{equation}
+            \begin{equation}
+                \text{Var}X = np(1-p)
+            \end{equation}
+        \end{subequations}
+    }
+\end{multicols}
+
+% End the document
+\end{document}
