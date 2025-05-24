@@ -49,6 +49,12 @@
 
 \begin{multicols}{2}
 
+\mybox{Propiedad F de Snedecor}{
+    \begin{equation}
+        F_{n; m; 1 - \alpha} = \frac{1}{F_{n;m;\alpha}}
+    \end{equation}
+}
+
 \mybox{Estadístico varianza muestral $s^2$}{
     \begin{subequations}
         \begin{equation}
@@ -60,7 +66,7 @@
     \end{subequations}
 }
 
-\mybox{Estadístico difrenrecia de varianzas muestrales $\frac{s_{x}^2}{s_{y}^2}$}{
+\mybox{Estadístico diferencia de varianzas muestrales $\frac{s_{x}^2}{s_{y}^2}$}{
     \begin{subequations}
         \begin{equation}
             \frac{s_{x}^2 / \sigma_{x}^2}{s_{y}^2 / \sigma_{y}^2} \sim F_{n-1;m-1}
@@ -78,6 +84,9 @@
         \end{equation}
         \begin{equation}
             \text{IC}: \left( \bar{x} \mp Z_{1 - \frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}} \right)  
+        \end{equation}
+        \begin{equation}
+            n \approx \frac{(Z_{\alpha} + Z_{\beta})^2 \sigma^2}{\delta^2} \text{ si test unilateral}
         \end{equation}
     \end{subequations}
 }
@@ -111,6 +120,9 @@
         \end{equation}
         \begin{equation}
             \text{IC}: \left( \bar{x} - \bar{y} \mp Z_{1 - \frac{\alpha}{2}} \cdot \sqrt{\frac{\sigma_x^2}{n_{1}} + \frac{\sigma_y^2}{n_{2}}} \right)  
+        \end{equation}
+        \begin{equation}
+            n \approx \frac{(Z_{\alpha} + Z_{\beta})^2(\sigma_{x}^2 + \sigma_{y}^2)}{\delta^2} \text{ si test unilateral}
         \end{equation}
     \end{subequations}
 }
@@ -201,6 +213,12 @@
     \end{subequations}
 }
 
+\mybox{Razón de verosimilitudes}{
+    \begin{equation}
+    X \in C \implies \frac{L(X, \theta_{0})}{L(X, \theta_{1})} \le K
+    \end{equation}
+}
+
 \end{multicols}
 
 \pagebreak
@@ -251,7 +269,7 @@
 
     \mybox{Función de verosimilitud}{
         \begin{equation}
-            L(X, \theta) = P(x_{1}, \ldots, x_{n} | \theta)
+            L(X, \theta) = P(x_{1}, x_{2}, \dots, x_{n} \; | \; \theta)
         \end{equation}
     }
 
